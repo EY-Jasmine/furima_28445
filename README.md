@@ -2,16 +2,16 @@
 
 ## users テーブル
 
-| Column      | Type   | Options     |
-| ----------- | ------ | ----------- |
+| Column      | Type   | Options                  |
+| ----------- | ------ | ------------------------ |
 | nickname    | string | null: false, unique:true |
-| email       | string | null: false |
-| password    | string | null: false |
-| family_name | string | null: false |
-| first_name  | string | null: false |
-| myoji       | string | null: false |
-| namae       | string | null: false |
-| birthday    | date   | null: false |
+| email       | string | null: false              |
+| password    | string | null: false              |
+| family_name | string | null: false              |
+| first_name  | string | null: false              |
+| myoji_kana  | string | null: false              |
+| namae_kana  | string | null: false              |
+| birthday    | date   | null: false              |
 
 ### Association
 
@@ -24,11 +24,11 @@
 | ------------ | ---------- | ------------------------------ |
 | name         | string     | null: false                    |
 | detail       | text       | null: false                    |
-| category     | string     | null: false                    |
-| condition    | string     | null: false                    |
+| category     | integer    | null: false                    |
+| condition    | integer    | null: false                    |
 | delivery_fee | integer    | null: false                    |
 | prefecture   | integer    | null: false                    |
-| day          | string     | null: false                    |
+| day          | integer    | null: false                    |
 | price        | integer    | null: false                    |
 | user         | references | null: false, foreign_key: true |
 
@@ -54,7 +54,7 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| zip_code   | integer    | null: false                    |
+| zip_code   | string     | null: false                    |
 | prefecture | integer    | null: false                    |
 | city       | string     | null: false                    |
 | address    | text       | null: false                    |

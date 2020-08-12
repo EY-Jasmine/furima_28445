@@ -4,14 +4,14 @@
 
 | Column      | Type   | Options     |
 | ----------- | ------ | ----------- |
-| nickname    | string | null: false |
+| nickname    | string | null: false, unique:true |
 | email       | string | null: false |
 | password    | string | null: false |
 | family_name | string | null: false |
 | first_name  | string | null: false |
 | myoji       | string | null: false |
 | namae       | string | null: false |
-| birthday    | string | null: false |
+| birthday    | date   | null: false |
 
 ### Association
 
@@ -23,13 +23,13 @@
 | Column       | Type       | Options                        |
 | ------------ | ---------- | ------------------------------ |
 | name         | string     | null: false                    |
-| detail       | string     | null: false                    |
+| detail       | text       | null: false                    |
 | category     | string     | null: false                    |
 | condition    | string     | null: false                    |
-| delivery_fee | string     | null: false                    |
-| prefecture   | string     | null: false                    |
+| delivery_fee | integer    | null: false                    |
+| prefecture   | integer    | null: false                    |
 | day          | string     | null: false                    |
-| price        | string     | null: false                    |
+| price        | integer    | null: false                    |
 | user         | references | null: false, foreign_key: true |
 
 ### Association
@@ -54,11 +54,11 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| zip_code   | string     | null: false                    |
-| prefecture | string     | null: false                    |
+| zip_code   | integer    | null: false                    |
+| prefecture | integer    | null: false                    |
 | city       | string     | null: false                    |
-| address    | string     | null: false                    |
-| building   | string     | null: false                    |
+| address    | text       | null: false                    |
+| building   | string     |                                |
 | tel        | string     | null: false                    |
 | buy        | references | null: false, foreign_key: true |
 

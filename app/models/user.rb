@@ -12,9 +12,7 @@ class User < ApplicationRecord
   # 名前（ふりがな）に全角カタカナ以外を使えないようにする
   with_options presence: true do  
     validates :nickname, uniqueness: true
-    validates :email, uniqueness: true
     validates :birthday
-    validates :password, confirmation: true, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
 
     with_options format: {with: /\A[ぁ-んァ-ン一-龥]+\z/} do
       validates :family_name
@@ -26,4 +24,8 @@ class User < ApplicationRecord
       validates :namae_kana
     end
   end
+
+  validates :email, uniqueness: true
+  validates :password, confirmation: true, format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i}
+
 end

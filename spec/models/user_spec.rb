@@ -71,7 +71,7 @@ describe User do
         @user.password = '000000'
         @user.password_confirmation = '000000'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+        expect(@user.errors.full_messages).to include('Password is invalid')
       end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password_confirmation = ''
@@ -81,12 +81,12 @@ describe User do
       it 'family_nameが半角では登録できない' do
         @user.family_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Family name 全角文字を使用してください')
+        expect(@user.errors.full_messages).to include('Family name is invalid')
       end
       it 'first_nameが半角では登録できない' do
         @user.first_name = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('First name 全角文字を使用してください')
+        expect(@user.errors.full_messages).to include('First name is invalid')
       end
       it 'family_nameが空では登録できない' do
         @user.family_name = ''
@@ -101,12 +101,12 @@ describe User do
       it 'myoji_kanaが半角では登録できない' do
         @user.myoji_kana = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Myoji kana 全角文字を使用してください')
+        expect(@user.errors.full_messages).to include('Myoji kana is invalid')
       end
       it 'namae_kanaが半角では登録できない' do
         @user.namae_kana = 'aaaaaa'
         @user.valid?
-        expect(@user.errors.full_messages).to include('Namae kana 全角文字を使用してください')
+        expect(@user.errors.full_messages).to include('Namae kana is invalid')
       end
       it 'myoji_kanaが空では登録できない' do
         @user.myoji_kana = ''

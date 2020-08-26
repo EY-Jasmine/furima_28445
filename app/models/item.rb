@@ -7,6 +7,14 @@ class Item < ApplicationRecord
   belongs_to_active_hash :day
   belongs_to :user
   has_one_attached :image
+  validate :image_presence
+# 画像の添付を必須にする
+  def image_presence
+    if image.attached? 
+    else
+      errors.add(:image, 'ファイルを添付してください')
+    end
+  end
 
   #空の投稿を保存できないようにする
   with_options presence: true do  
@@ -31,5 +39,7 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :day_id
   end
+
+  
 
 end

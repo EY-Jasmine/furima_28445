@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :item_pickup, only: [:show]
+  before_action :item_pickup, only: [:show, :edit]
 
   def index
     @items = Item.all.order(id: 'DESC')
@@ -24,7 +24,10 @@ class ItemsController < ApplicationController
   end
 
   def show
-  end 
+  end
+
+  def edit
+  end
 
   private
 

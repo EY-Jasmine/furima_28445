@@ -155,10 +155,10 @@
     <% else %>
       <% @items.each do |item| %>
         <li class='list'>
-          <a href="/items/:id">
+          <%= link_to item_path(item.id) do %>
             <div class='item-img-content'>
             <%= image_tag item.image, class: "item-img" %>
-          </a>  
+          <% end %>
           <%# 商品が売れていればsold outの表示 %>
           <div class='sold-out'>
             <span>Sold Out!!</span>

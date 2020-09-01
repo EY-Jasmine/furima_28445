@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :item_pickup, only: [:show]
 
   def index
     @items = Item.all.order(id: 'DESC')
@@ -23,7 +24,6 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
   end 
 
   private
@@ -32,5 +32,9 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name, :detail, :category_id,
                                  :condition_id, :delivery_fee_id, :prefecture_id, :day_id, :price, :image)
           .merge(user_id: current_user.id)
+  end
+
+  def item_pickup
+    @item = Item.find(params[:id])
   end
 end

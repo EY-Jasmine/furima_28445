@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :items
+  has_many :buys
 
   # 全カラム空欄を禁止
   # ニックネームとメールアドレスを一意性に

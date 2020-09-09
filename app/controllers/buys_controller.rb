@@ -1,6 +1,6 @@
 class BuysController < ApplicationController
   def create
-    Item.create(buy_params)
+    Buy.create(buy_params)
     redirect_to root_path
   end
 

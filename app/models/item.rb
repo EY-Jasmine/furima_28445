@@ -6,7 +6,8 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to_active_hash :day
   belongs_to :user
-  has_many :buys
+  has_one :buy
+  has_one :delivery
   has_one_attached :image
   validate :image_presence
   # 画像の添付を必須にする

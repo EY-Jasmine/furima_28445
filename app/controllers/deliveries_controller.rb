@@ -16,7 +16,8 @@ class DeliveriesController < ApplicationController
 
   private
   def delivery_params
-    params.require(:delivery).merge(user_id: current_user.id, delivery_id: params[:delivery_id])
+    params.require(:delivery).permit(:zip_code, :prefecture_id, :city, :address, :tel)
+    .merge(user_id: current_user.id, delivery_id: params[:delivery_id])
   end
 
   def item_pickup

@@ -5,11 +5,11 @@ class Delivery < ApplicationRecord
 
   # 空の投稿を保存できないようにする
   with_options presence: true do
-    validates :zip_code
+    validates :zip_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :prefecture
     validates :city
     validates :address
-    validates :tel
+    validates :tel, format: { with: /\A[0-9]+\z/ }
     validates :item
   end
 

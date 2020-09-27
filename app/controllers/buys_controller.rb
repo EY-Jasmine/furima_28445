@@ -2,13 +2,15 @@ class BuysController < ApplicationController
   before_action :authenticate_user!
   before_action :item_pickup, only: [:index, :create]
 
-# itemテーブルからdeliveryへデータを持ってくる
-# item_id毎に個別のデータを持ってこれるようにする
   def index
   end
 
   def create
     Delivery.create(delivery_params)
+  end
+
+  def new
+    @delivery = delivery.new
   end
 
   private

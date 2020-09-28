@@ -5,18 +5,23 @@ class BuysController < ApplicationController
   def index
   end
 
-  def create
-    Delivery.create(delivery_params)
+  def new
+    @buy = DeliveryBuy.new
   end
 
-  def new
-    @delivery = delivery.new
+  def create
+    @buy = DeliveryBuy.new(buy_params)
+    if @buy.save
+      redirect_to root_path
+    else
+      render 'index'      
+    end    
   end
 
   private
-  def delivery_params
-    params.require(:delivery).permit(:zip_code, :prefecture_id, :city, :address, :building, :tel)
-    .merge(user_id: current_user.id, delivery_id: params[:delivery_id])
+  def buy_params
+    params.permit(:zip_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id)
+    .merge(user_id: current_user.id)
   end
 
   def item_pickup

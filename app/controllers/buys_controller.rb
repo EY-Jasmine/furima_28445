@@ -11,16 +11,17 @@ class BuysController < ApplicationController
 
   def create
     @buy = DeliveryBuy.new(buy_params)
-    if @buy.save
+    if @buy.valid?
+      @buy.save
       redirect_to root_path
     else
-      render 'shared/error_messages'      
+      render :index     
     end    
   end
 
   private
   def buy_params
-    params.permit(:zip_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id)
+    params.permit(:zip_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id, :buy_id)
     .merge(user_id: current_user.id)
   end
 

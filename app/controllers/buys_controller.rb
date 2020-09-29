@@ -14,7 +14,7 @@ class BuysController < ApplicationController
     if @buy.save
       redirect_to root_path
     else
-      render 'index'      
+      render 'shared/error_messages'      
     end    
   end
 

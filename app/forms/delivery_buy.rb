@@ -1,7 +1,7 @@
 class DeliveryBuy
 
   include ActiveModel::Model
-  attr_accessor :zip_code, :prefecture_id, :city, :address, :building, :tel, :item_id, :user_id, :buy_id
+  attr_accessor :zip_code, :prefecture_id, :city, :address, :building, :tel, :item_id, :user_id, :buy_id, :token
 
   # 空の投稿を保存できないようにする
   with_options presence: true do
@@ -10,6 +10,7 @@ class DeliveryBuy
     validates :city
     validates :address
     validates :tel, format: { with: /\A[0-9]+\z/ }
+    validates :token
   end
   
   # ジャンルの選択が「--」の時は保存できないようにする

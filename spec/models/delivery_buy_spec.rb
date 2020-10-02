@@ -16,12 +16,12 @@ RSpec.describe DeliveryBuy, type: :model do
   it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
     @delivery_buy.zip_code = '1234567'
     @delivery_buy.valid?
-    expect(@delivery_buy.errors.full_messages).to include("Zip code is invalid")
+    expect(@delivery_buy.errors.full_messages).to include('Zip code is invalid')
   end
   it 'prefectureが未選択だと保存できないこと' do
     @delivery_buy.prefecture_id = 1
     @delivery_buy.valid?
-    expect(@delivery_buy.errors.full_messages).to include("Prefecture must be other than 1")
+    expect(@delivery_buy.errors.full_messages).to include('Prefecture must be other than 1')
   end
   it 'cityが空だと保存できないこと' do
     @delivery_buy.city = nil
@@ -45,13 +45,13 @@ RSpec.describe DeliveryBuy, type: :model do
   it 'telは記号を含んでいると保存できないこと' do
     @delivery_buy.tel = '090-1234-5678'
     @delivery_buy.valid?
-    expect(@delivery_buy.errors.full_messages).to include("Tel is invalid")
+    expect(@delivery_buy.errors.full_messages).to include('Tel is invalid')
   end
-  
-  it "priceとtokenがあれば保存ができること" do
+
+  it 'priceとtokenがあれば保存ができること' do
     expect(@delivery_buy).to be_valid
   end
-  it "tokenが空では登録できないこと" do
+  it 'tokenが空では登録できないこと' do
     @delivery_buy.token = nil
     @delivery_buy.valid?
     expect(@delivery_buy.errors.full_messages).to include("Token can't be blank")

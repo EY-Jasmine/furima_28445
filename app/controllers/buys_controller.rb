@@ -17,13 +17,14 @@ class BuysController < ApplicationController
       redirect_to root_path
     else
       render :index
-    end    
+    end
   end
 
   private
+
   def buy_params
     params.permit(:price, :zip_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id, :buy_id, :token)
-    .merge(user_id: current_user.id, item_id: params[:item_id])
+          .merge(user_id: current_user.id, item_id: params[:item_id])
   end
 
   def item_pickup
@@ -32,7 +33,7 @@ class BuysController < ApplicationController
 
   def pay_item
     @item = Item.find(params[:item_id])
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,
       card: buy_params[:token],

@@ -1,6 +1,7 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!
   before_action :item_pickup, only: [:index, :create]
+  before_action :move_to_top, only: [:index]
 
   def index
   end
@@ -25,6 +26,13 @@ class BuysController < ApplicationController
   def buy_params
     params.permit(:price, :zip_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id, :buy_id, :token)
           .merge(user_id: current_user.id, item_id: params[:item_id])
+  end
+
+  def move_to_top
+    item_pickup
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
   end
 
   def item_pickup

@@ -47,8 +47,6 @@ class ItemsController < ApplicationController
 
   def redirect_toppage
     item_pickup
-    if @item.buy
-      redirect_to root_path
-    end
+    redirect_to root_path if @item.buy
   end
 end

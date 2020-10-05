@@ -8,7 +8,7 @@ class DeliveryBuy
     validates :prefecture_id
     validates :city
     validates :address
-    validates :tel, format: { with: /\A[0-9]+\z/ }
+    validates :tel, format: { with: /\A[0-9]+\z/ }, length: { maximum: 11 }
     validates :token
   end
 

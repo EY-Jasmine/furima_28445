@@ -2,7 +2,6 @@ class BuysController < ApplicationController
   before_action :authenticate_user!
   before_action :item_pickup, only: [:index, :create]
   before_action :move_to_top, only: [:index]
-  before_action :redirect_toppage, only: [:index]
 
   def index
   end
@@ -31,12 +30,7 @@ class BuysController < ApplicationController
 
   def move_to_top
     item_pickup
-    redirect_to root_path if current_user.id == @item.user_id
-  end
-
-  def redirect_toppage
-    item_pickup
-    redirect_to root_path if @item.buy
+    return redirect_to root_path if current_user.id == @item.user_id || @item.buy != nil
   end
 
   def item_pickup

@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   before_action :item_pickup, only: [:show, :edit, :update]
+  before_action :redirect_toppage, only: [:edit]
 
   def index
     @items = Item.all.order(id: 'DESC')
@@ -8,10 +9,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-  end
-
-  def move_to_index
-    redirect_to action: :index unless user_signed_in?
   end
 
   def create
@@ -53,5 +50,14 @@ class ItemsController < ApplicationController
 
   def item_pickup
     @item = Item.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to action: :index unless user_signed_in?
+  end
+
+  def redirect_toppage
+    item_pickup
+    redirect_to root_path if @item.buy
   end
 end

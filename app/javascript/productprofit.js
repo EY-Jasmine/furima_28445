@@ -1,18 +1,9 @@
-$(document).on('turbolinks:load', function() { 
-
-$(function(){
-  $('#item-price').on('input', function(){ 
-    const data = $('#item-price').val(); 
-    const productProfit = Math.round(data * 0.9)  
-    const fee = (data - productProfit) 
-    $('#add-tax-price').html(fee) 
-    $('#profit').html(productProfit)
-    $('#profit').val(productProfit) 
-    if(productProfit == '') {  
-    $('#profit').html('');
-    $('#add-tax-price').html('');
-    }
+window.addEventListener('load', function() {
+  const price = document.getElementById("item-price")
+  const add_tax_price = document.getElementById("add-tax-price")
+  const profit = document.getElementById("profit")
+  price.addEventListener('input',function(){
+    add_tax_price.innerHTML = (price.value * 0.1).toLocaleString();
+    profit.innerHTML = (price.value - (price.value * 0.1)).toString().replace(/(\d)(?=(\d{3})+$)/g , '$1,');
   })
 })
-
-});

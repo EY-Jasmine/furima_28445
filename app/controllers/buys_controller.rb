@@ -30,7 +30,7 @@ class BuysController < ApplicationController
 
   def move_to_top
     item_pickup
-    return redirect_to root_path if current_user.id == @item.user_id || @item.buy != nil
+    return redirect_to root_path if current_user.id == @item.user_id || !@item.buy.nil?
   end
 
   def item_pickup

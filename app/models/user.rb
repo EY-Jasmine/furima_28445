@@ -28,5 +28,5 @@ class User < ApplicationRecord
   end
 
   validates :email, uniqueness: true
-  validates :password, confirmation: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }
+  validates :password, confirmation: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }, length: { minimum: 6 }
 end

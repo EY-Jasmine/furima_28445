@@ -42,12 +42,16 @@ RSpec.describe DeliveryBuy, type: :model do
     @delivery_buy.valid?
     expect(@delivery_buy.errors.full_messages).to include("Tel can't be blank")
   end
-  it 'telは記号を含んでいると保存できないこと' do
+  it 'telはハイフンを含んでいると保存できないこと' do
     @delivery_buy.tel = '090-1234-5678'
     @delivery_buy.valid?
     expect(@delivery_buy.errors.full_messages).to include('Tel is invalid')
   end
-
+  it 'telは11桁より多い桁数だと保存できないこと' do
+    @delivery_buy.tel = '123456789101112'
+    @delivery_buy.valid?
+    expect(@delivery_buy.errors.full_messages).to include('Tel is too long (maximum is 11 characters)')
+  end
   it 'priceとtokenがあれば保存ができること' do
     expect(@delivery_buy).to be_valid
   end

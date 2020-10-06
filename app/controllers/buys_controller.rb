@@ -4,6 +4,7 @@ class BuysController < ApplicationController
   before_action :move_to_top, only: [:index]
 
   def index
+    @buy = DeliveryBuy.new
   end
 
   def new

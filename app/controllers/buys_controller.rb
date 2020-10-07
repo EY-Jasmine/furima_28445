@@ -12,6 +12,7 @@ class BuysController < ApplicationController
   end
 
   def create
+    binding.pry
     @buy = DeliveryBuy.new(buy_params)
     if @buy.valid?
       pay_item
@@ -25,8 +26,8 @@ class BuysController < ApplicationController
   private
 
   def buy_params
-    params.permit(:price, :zip_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id, :buy_id, :token)
-          .merge(user_id: current_user.id, item_id: params[:item_id])
+    params.require(:delivery_buy).permit(:price, :zip_code, :prefecture_id, :city, :address, :building, :tel, :user_id, :item_id, :buy_id)
+          .merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
   def move_to_top
